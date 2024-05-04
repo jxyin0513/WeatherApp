@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ModalProvider } from "./Modal/Modal";
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 
 import App from "./App";
 
@@ -15,5 +15,5 @@ root.render(
 </Provider>    */}
       <App />
     </ModalProvider>
-  </StrictMode>
+  </StrictMode>,
 );
