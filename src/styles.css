@@ -1,0 +1,50 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.search-form > div > i {
+  padding: 10px 10px;
+  position: absolute;
+}
+.search-Bar {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+  /* height: 0px; */
+  padding: 25px 0 15px 0;
+}
+.search-form {
+  display: inline-block;
+}
+.search-form > div {
+  position: relative;
+  margin: 0 40px 0 0px;
+  display: inline-block;
+}
+.day-Outer {
+  display: inline-block;
+  margin: 0 40px 0 40px;
+}
+.time-Outer {
+  display: inline-block;
+  margin: 0 0px 0 40px;
+}
+.search-Tab {
+  padding: 0 0 0 7px;
+  text-align: center;
+  height: 30px;
+  display: inline;
+  border-radius: 5px;
+}
+button {
+  cursor: pointer;
+}
+.weather-Container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px 0 0 0;
+  /* align-items: center; */
+}
+/* .search-Tab-Bar {
+  border-bottom: 1px solid black;
+} */

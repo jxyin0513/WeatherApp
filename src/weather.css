@@ -1,0 +1,65 @@
+.this-Week-Container {
+  width: 550px;
+  height: 350px;
+}
+.next-Week-Container {
+  width: 550px;
+  height: 350px;
+}
+.weather-Info-Outer {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  height: 130px;
+}
+.date-This-Week > div {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.date-This-Week {
+  position: absolute;
+  left: 7%;
+}
+.humidity-This-Week > div {
+  display: inline-block;
+  padding: 0 0 0 7px;
+  font-size: 14px;
+}
+.humidity-This-Week {
+  position: absolute;
+  top: 70px;
+  left: 7%;
+}
+.rain-This-Week > div {
+  display: inline-block;
+  padding: 0 0 0 5px;
+  font-size: 13px;
+}
+.rain-This-Week {
+  position: absolute;
+  top: 37px;
+  left: 7%;
+}
+.cloud-This-Week {
+  position: absolute;
+  top: 65px;
+  left: 35%;
+}
+.temperature-This-Week {
+  position: absolute;
+  top: 100px;
+  left: 7%;
+}
+
+.temperature-This-Week > div {
+  display: inline-block;
+  padding: 0px 0 0 5px;
+  font-size: 13px;
+  font-size: 13px;
+}
+.error-handler-outer > div {
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 20px;
+}

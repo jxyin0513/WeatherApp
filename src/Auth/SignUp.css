@@ -1,0 +1,12 @@
+.sign-up > label {
+  display: block;
+  padding: 3px 10px 3px 10px;
+}
+.sign-Up-Outer {
+  background-color: rgb(245, 244, 244);
+  border-radius: 5px;
+  height: 200px;
+}
+.sign-up {
+  padding: 40px 10px 10px 15px;
+}
