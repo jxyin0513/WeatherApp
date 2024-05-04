@@ -40,12 +40,12 @@ function ThisWeekChart({ info }) {
     let weatherData;
     if (currDay <= day) {
       thisWeek = new Date(
-        currTime.getTime() + 3600 * 1000 * 24 * (day - currDay)
+        currTime.getTime() + 3600 * 1000 * 24 * (day - currDay),
       );
     } else {
       thisWeek = new Date(
         currTime.getTime() +
-          3600 * 1000 * 24 * (6 - Number(currDay) + Number(day + 1))
+          3600 * 1000 * 24 * (6 - Number(currDay) + Number(day) + 1),
       );
     }
     let timeRange = time.split("-").map((time) => Number(time));
@@ -62,7 +62,7 @@ function ThisWeekChart({ info }) {
             thisWeek.getMonth() + 1
           }-${thisWeek.getDate()}T${
             timeRange[1]
-          }:00:00?key=G3YYC9VBLJ5NDAH7LARPZH49Z`
+          }:00:00?key=G3YYC9VBLJ5NDAH7LARPZH49Z`,
         );
         if (!response.ok) {
           throw new Error(`Sorry can't find weather at `);
@@ -70,18 +70,16 @@ function ThisWeekChart({ info }) {
         weatherData = await response.json();
         // console.log(jsonData);
         console.log(weatherData);
-        thisWeekData = [
-          ...weatherData.days[0].hours.filter((hour) => {
-            // console.log(hour);
-            let time = hour.datetime.split(":")[0];
-            if (Number(time) < timeRange[1] && Number(time) >= timeRange[0]) {
-              return true;
-            } else {
-              return false;
-            }
-          }),
-        ];
-        setTodayWeather(weatherData.days[0]);
+        (thisWeekData = weatherData.days[0].hours?.filter((hour) => {
+          // console.log(hour);
+          let time = hour.datetime.split(":")[0];
+          if (Number(time) < timeRange[1] && Number(time) >= timeRange[0]) {
+            return true;
+          } else {
+            return false;
+          }
+        })),
+          setTodayWeather(weatherData?.days[0]);
         let timeLine = [];
         let dummyRange = [...timeRange];
         while (dummyRange[1] > dummyRange[0]) {
@@ -93,7 +91,7 @@ function ThisWeekChart({ info }) {
           datasets: [
             {
               label: "Temperature",
-              data: thisWeekData.map((data) => {
+              data: thisWeekData?.map((data) => {
                 let hour = data.datetime.split(":")[0];
                 // console.log(hour, Number(hour));
                 if (
@@ -110,7 +108,7 @@ function ThisWeekChart({ info }) {
             },
             {
               label: "Feels Like",
-              data: thisWeekData.map((data) => {
+              data: thisWeekData?.map((data) => {
                 let hour = data.datetime.split(":")[0];
                 if (
                   Number(hour) < timeRange[1] &&
@@ -135,6 +133,7 @@ function ThisWeekChart({ info }) {
     return () => {
       setTodayWeather({});
       setThisChartData({});
+      setErrors(null);
     };
   }, [location, day, time]);
   return (

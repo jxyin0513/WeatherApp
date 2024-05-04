@@ -41,13 +41,13 @@ function NextWeekChart({ info }) {
     let weatherData;
     if (currDay <= day) {
       thisWeek = new Date(
-        currTime.getTime() + 3600 * 1000 * 24 * (day - currDay)
+        currTime.getTime() + 3600 * 1000 * 24 * (day - currDay),
       );
       nextWeek = new Date(thisWeek.getTime() + 3600 * 1000 * 24 * 7);
     } else {
       thisWeek = new Date(
         currTime.getTime() +
-          3600 * 1000 * 24 * (6 - Number(currDay) + Number(day + 1))
+          3600 * 1000 * 24 * (6 - Number(currDay) + Number(day) + 1),
       );
       nextWeek = new Date(thisWeek.getTime() + 3600 * 1000 * 24 * 7);
     }
@@ -64,24 +64,22 @@ function NextWeekChart({ info }) {
             nextWeek.getMonth() + 1
           }-${nextWeek.getDate()}T${
             timeRange[1]
-          }:00:00?key=G3YYC9VBLJ5NDAH7LARPZH49Z`
+          }:00:00?key=G3YYC9VBLJ5NDAH7LARPZH49Z`,
         );
         if (!response.ok) {
           throw new Error(["Sorry can't find weather at "]);
         }
         weatherData = await response.json();
         console.log(weatherData, "weather data");
-        nextWeekData = [
-          ...weatherData.days[0].hours.filter((hour) => {
-            let time = hour.datetime.split(":")[0];
-            if (Number(time) < timeRange[1] && Number(time) >= timeRange[0]) {
-              return true;
-            } else {
-              return false;
-            }
-          }),
-        ];
-        setTodayWeather(weatherData.days[0]);
+        (nextWeekData = weatherData.days[0].hours.filter((hour) => {
+          let time = hour.datetime.split(":")[0];
+          if (Number(time) < timeRange[1] && Number(time) >= timeRange[0]) {
+            return true;
+          } else {
+            return false;
+          }
+        })),
+          setTodayWeather(weatherData.days[0]);
         let timeLine = [];
         let dummyRange = [...timeRange];
         while (dummyRange[1] > dummyRange[0]) {
@@ -138,6 +136,7 @@ function NextWeekChart({ info }) {
     return () => {
       setTodayWeather({});
       setNextChartData({});
+      setErrors(null);
     };
   }, [location, day, time]);
   return (
