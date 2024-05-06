@@ -5,17 +5,26 @@ function SignUp({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   function onSubmit() {
     const user = {
       username,
       email,
       password,
     };
-    localStorage.setItem("user", user);
-    onClose();
+    if (password !== confirmPassword) {
+      setErrors(["Password and confirm password has to match."]);
+    } else {
+      localStorage.setItem("user", user);
+      onClose();
+    }
   }
   return (
     <div className="sign-Up-Outer">
+      <div className="errors-handler-signup">
+        {errors.length > 0 &&
+          errors.map((error, idx) => <div key={idx}>* {error}</div>)}
+      </div>
       <form className="sign-up" onSubmit={onSubmit}>
         <label>
           Username:

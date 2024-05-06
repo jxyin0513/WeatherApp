@@ -8,5 +8,9 @@
   height: 200px;
 }
 .sign-up {
-  padding: 40px 10px 10px 15px;
+  padding: 10px 10px 10px 15px;
+}
+.errors-handler-signup {
+  height: 20px;
+  padding: 10px 0 10px 10px;
 }
