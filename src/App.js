@@ -64,6 +64,12 @@ function App() {
       <div className="search-Tab-Bar">
         ____________________________________________________________________________________________________
       </div>
+      {location.length > 0 && day !== "" && time.length > 0 && (
+        <div className="location-Tag">
+          <i className="fa-solid fa-location-dot"></i>
+          <div>{location}</div>
+        </div>
+      )}
       <div className="weather-Container">
         {location.length > 0 && day !== "" && time.length > 0 && (
           <ThisWeekChart info={{ location, time, day }} />
